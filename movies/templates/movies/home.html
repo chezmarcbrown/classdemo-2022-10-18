@@ -6,12 +6,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'movies/moviestyles.css' %}" rel="stylesheet">
-
     <title>Django ModelForms</title>
-    
   </head>
   <body>
     <header>
+
+      {% for m in messages %}
+          <h2 class="{{m.tags}}">{{m}}</h2>
+      {% endfor %}
+
+
       <h2>Add a new movie</h2>
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -31,7 +35,7 @@
           <img src="{{ m.movie_poster.url }}" width="200px">
           {% endif %}
           <h4>{{m.movie_title}}</h4>
-          <p>{{m.release_year}} | {{m.director}}</p>
+          <p>{{m.release_year}} | {{m.director}} | {{m.rating}} </p>
           <p>{{m.movie_plot}}</p>
         </article>
         {% empty %}

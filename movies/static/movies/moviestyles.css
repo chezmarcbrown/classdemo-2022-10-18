@@ -59,3 +59,10 @@ article {
   padding: 15px;
 }
 
+.success { 
+  color:green;
+}
+
+.errorlist, .error {
+  color: red;
+}

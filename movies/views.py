@@ -9,10 +9,11 @@ def homepage(request):
 		movie_form = MovieForm(request.POST, request.FILES)
 		if movie_form.is_valid():
 			movie_form.save()
-			messages.success(request, ('Your movie was successfully added!'))
+			messages.success(request, (f'\"{ movie_form.cleaned_data["movie_title"] }\" was successfully added!'))
+			return redirect("homepage")
 		else:
-			messages.error(request, 'Error saving form')		
-		return redirect("homepage")
-	movie_form = MovieForm()
+			messages.error(request, 'Error saving form')	
+	else: 
+		movie_form = MovieForm()
 	movies = Movie.objects.all()
-	return render(request=request, template_name="movies/home.html", context={'movie_form':movie_form, 'movies':movies})
+	return render(request, "movies/home.html", {'movie_form':movie_form, 'movies':movies})
