@@ -22,10 +22,10 @@ def run():
             plot = row["plot"]
             url = cached_url(row["url"])
             if Movie.objects.filter(         
-                movie_title=title, release_year=year, director=director, movie_poster_url=url, movie_plot=plot).exists():
+                movie_title=title, release_year=year, director=director, movie_poster_url=url, movie_plot=plot, rating=rating).exists():
                 print(f'already in database.')
             else:
-                m = Movie(movie_title=title, release_year=year, director=director, movie_poster_url=url, movie_plot=plot)
+                m = Movie(movie_title=title, release_year=year, director=director, movie_poster_url=url, movie_plot=plot, rating=rating)
                 m.save()
                 print(f'added to database.')
 

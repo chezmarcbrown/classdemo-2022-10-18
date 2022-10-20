@@ -24,8 +24,6 @@ class Movie(models.Model):
 	def save(self, *args, **kwargs):
 		if self.movie_poster_url and not self.movie_poster:
 			img_temp = NamedTemporaryFile(delete=True)
-			print(f'self: {self}')
-			print(f'url: {self.movie_poster_url}')
 			img_temp.write(urlopen(self.movie_poster_url).read())
 			img_temp.flush()
 			self.movie_poster.save(f"image_{self.pk}", File(img_temp))
